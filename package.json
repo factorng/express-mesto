@@ -1,0 +1,24 @@
+{
+  "name": "express-mesto",
+  "version": "1.0.0",
+  "description": "express server",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "app.js"
+  },
+  "keywords": [
+    "express"
+  ],
+  "author": "Aleksey Efimov",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.8.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
