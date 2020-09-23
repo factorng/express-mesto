@@ -22,12 +22,8 @@ const getCards = (req, res) => {
 
 const deleteCardById = (req, res) => {
   Card.findByIdAndDelete(req.params.cardId)
-    .then((card) => {
-      if (card === null) {
-        return res.status(404).send({ message: 'Такой карточки нет' });
-      }
-      return res.status(200).send(card);
-    })
+    .orFail()
+    .then((card) => res.status(200).send(card))
     .catch((err) => {
       if (err.name === 'CastError') {
         return res.status(404).send({ message: 'Карточка не найдена' });
