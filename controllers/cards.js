@@ -22,11 +22,13 @@ const getCards = (req, res) => {
 
 const deleteCardById = (req, res) => {
   Card.findByIdAndDelete(req.params.cardId)
-    .orFail()
+    .orFail(new Error('CardNotFound'))
     .then((card) => res.status(200).send(card))
     .catch((err) => {
-      if (err.name === 'CastError') {
+      if (err.message === 'CardNotFound') {
         return res.status(404).send({ message: 'Карточка не найдена' });
+      } if (err.name === 'CastError') {
+        return res.status(400).send({ message: 'Некорректный Id' });
       }
       return res.status(500).send({ message: 'Ошибка на сервере' });
     });
